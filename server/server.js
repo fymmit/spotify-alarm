@@ -9,7 +9,8 @@ const timer = require('../src/timer')
 const secrets = {
     client_id: process.env.SPOTIFY_CLIENT_ID,
     client_secret: process.env.SPOTIFY_CLIENT_SECRET,
-    auth_uri: process.env.AUTH_URI
+    auth_uri: process.env.AUTH_URI,
+    redirect_uri: process.env.REDIRECT_URI
 }
 
 app.use(express.static('../ui'))
@@ -35,10 +36,13 @@ app.post('/oauth', (req, res) => {
 })
 
 app.post('/play', async (req, res) => {
-    let oauth = req.body.oauth
+    let refreshToken = req.body.refreshToken
     let alarmTime = req.body.alarmTime
     let timeOut = await timer.calculateTimeout(alarmTime)
-    setTimeout(spotify.play, timeOut, oauth)
+    setTimeout(async () => {
+        let accessToken = await spotify.refreshAuth(secrets, refreshToken)
+        spotify.play(accessToken)
+    }, timeOut)
 })
 
 const PORT = process.env.PORT || 7000

@@ -1,6 +1,7 @@
 var input = document.getElementById('time-input')
 var authButton = document.getElementById('auth-button')
 var alarmButton = document.getElementById('alarm-button')
+var origin = window.location.origin
 
 authButton.addEventListener('click', authenticate)
 alarmButton.addEventListener('click', play)
@@ -17,14 +18,14 @@ function handleLoad(e) {
 }
 
 function play(e) {
-    if (sessionStorage.access_token) {
-        let oauth = sessionStorage.access_token
+    if (sessionStorage.refresh_token) {
+        let refreshToken = sessionStorage.refresh_token
         let alarmTime = input.value
         let data = {
-            oauth,
+            refreshToken,
             alarmTime
         }
-        fetch('http://localhost:7000/play', {
+        fetch(origin + '/play', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
@@ -37,7 +38,7 @@ function play(e) {
 }
 
 function oAuth(code) {
-    return fetch('http://localhost:7000/oauth', {
+    return fetch(origin + '/oauth', {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
@@ -65,7 +66,7 @@ function saveCode() {
 
 function authenticate() {
     if (!sessionStorage.code) {
-        fetch('http://localhost:7000/auth')
+        fetch(origin + '/auth')
         .then(res => {
             return res.json()
         })

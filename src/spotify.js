@@ -67,7 +67,7 @@ function refreshAuth(secrets, refresh_token) {
             }
         }
         axios.post(url, data, config).then(result => {
-            resolve(result.data)
+            resolve(result.data.access_token)
         }).catch(err => {
             console.log(err)
             reject()
