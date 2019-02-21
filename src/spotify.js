@@ -22,7 +22,9 @@ function play(authToken) {
             resolve()
         })
         .catch(err => {
-            console.log(err)
+            let timeStamp = new Date()
+            console.log(timeStamp.getHours(), ':', timeStamp.getMinutes())
+            console.log(err.data)
         })
     })
 }
@@ -45,7 +47,9 @@ function auth(secrets, code) {
         axios.post(url, data, config).then(result => {
             resolve(result.data)
         }).catch(err => {
-            console.log(err)
+            let timeStamp = new Date()
+            console.log(timeStamp.getHours(), ':', timeStamp.getMinutes())
+            console.log(err.data)
             reject()
         })
     })
@@ -69,7 +73,9 @@ function refreshAuth(secrets, refresh_token) {
         axios.post(url, data, config).then(result => {
             resolve(result.data.access_token)
         }).catch(err => {
-            console.log(err)
+            let timeStamp = new Date()
+            console.log(timeStamp.getHours(), ':', timeStamp.getMinutes())
+            console.log(err.data)
             reject()
         })
     })
