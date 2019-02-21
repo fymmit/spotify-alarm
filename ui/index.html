@@ -5,27 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Spotify Alarm</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
-        <h2>
-            Usage
-        </h2>
-        <ol>
-            <li>Open Spotify on your desired device</li>
-            <li>Play any music on Spotify (this sets the device active)</li>
-            <li>Pause the music if you will</li>
-            <li>Press the Auth button</li>
-            <li>Set desired alarm time in the input field using military time (e.g. 1337)</li>
-            <li>Press the Set alarm button</li>
-            <li>Wait for the designated time</li>
-        </ol>
+    <div class="container">
+        <div class="instructions">
+            <h2>
+                Usage
+            </h2>
+            <ol>
+                <li>Open Spotify on your desired device</li>
+                <li>Play any music on Spotify (this sets the device active)</li>
+                <li>Pause the music if you will</li>
+                <li>Press the Auth button</li>
+                <li>Set desired alarm time in the input field using military time (e.g. 1337)</li>
+                <li>Press the Set alarm button</li>
+                <li>Wait for the designated time</li>
+            </ol>
+        </div>
+        <div class="form">
+            <button id="auth-button">Auth</button>
+            <input id="time-input" type="text" name="time" placeholder="nnnn">
+            <button id="alarm-button">Set alarm</button>
+        </div>
     </div>
-    <div>
-        <button id="auth-button">Auth</button>
-        <input id="time-input" type="text" name="time" placeholder="nnnn">
-        <button id="alarm-button">Set alarm</button>
-        <script src="site.js"></script>
-    </div>
+    <script src="site.js"></script>
 </body>
 </html>
