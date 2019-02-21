@@ -51,7 +51,32 @@ function auth(secrets, code) {
     })
 }
 
+function refreshAuth(secrets, refresh_token) {
+    return new Promise(resolve => {
+        let url = 'https://accounts.spotify.com/api/token'
+        let data = qs.stringify({
+            grant_type: 'refresh_token',
+            refresh_token,
+            redirect_uri: secrets.redirect_uri,
+            client_id: secrets.client_id,
+            client_secret: secrets.client_secret
+        })
+        let config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }
+        axios.post(url, data, config).then(result => {
+            resolve(result.data)
+        }).catch(err => {
+            console.log(err)
+            reject()
+        })
+    })
+}
+
 module.exports = {
     play,
-    auth
+    auth,
+    refreshAuth
 }
