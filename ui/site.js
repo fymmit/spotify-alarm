@@ -18,22 +18,26 @@ function handleLoad(e) {
 }
 
 function play(e) {
-    if (sessionStorage.refresh_token) {
-        let refreshToken = sessionStorage.refresh_token
-        let alarmTime = input.value
-        let data = {
-            refreshToken,
-            alarmTime
+    if (input.value) {
+        if (sessionStorage.refresh_token) {
+            let refreshToken = sessionStorage.refresh_token
+            let alarmTime = input.value
+            let data = {
+                refreshToken,
+                alarmTime
+            }
+            fetch(origin + '/play', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+        } else {
+            alert('Please authenticate first.')
         }
-        fetch(origin + '/play', {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
     } else {
-        alert('Please authenticate first.')
+        alert('Enter a time.')
     }
 }
 

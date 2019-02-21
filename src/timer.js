@@ -1,7 +1,7 @@
 function calculateTimeout(end) {
     return new Promise(resolve => {
-        let endHours = end.substr(0, 2)
-        let endMinutes = end.substr(2, 2)
+        let endHours = end.substring(0, end.indexOf(':'))
+        let endMinutes = end.substring(end.indexOf(':') + 1)
         let startTime = new Date()
         let endTime = new Date()
         endTime.setHours(endHours)
