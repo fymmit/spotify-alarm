@@ -11,9 +11,11 @@ function handleLoad(e) {
     saveCode()
     if (sessionStorage.code) {
         let code = sessionStorage.code
-        oAuth({code}).then(res => {
-            saveAccessTokens(res)
-        })
+        if (!sessionStorage.refresh_token) {
+            oAuth({code}).then(res => {
+                saveAccessTokens(res)
+            })
+        }
     }
 }
 
