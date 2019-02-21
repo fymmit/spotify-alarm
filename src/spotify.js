@@ -23,7 +23,9 @@ function play(authToken) {
         })
         .catch(err => {
             let timeStamp = new Date()
-            console.log(timeStamp.getHours() + ':' + timeStamp.getMinutes() + ' Playback error.')
+            console.log(timeStamp.getHours() + ':' + timeStamp.getMinutes())
+            console.log(err.response.data)
+            reject()
         })
     })
 }
@@ -48,14 +50,14 @@ function auth(secrets, code) {
         }).catch(err => {
             let timeStamp = new Date()
             console.log(timeStamp.getHours() + ':' + timeStamp.getMinutes())
-            console.log(err.data)
+            console.log(err.response.data)
             reject()
         })
     })
 }
 
 function refreshAuth(secrets, refresh_token) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
         let url = 'https://accounts.spotify.com/api/token'
         let data = qs.stringify({
             grant_type: 'refresh_token',
@@ -74,7 +76,7 @@ function refreshAuth(secrets, refresh_token) {
         }).catch(err => {
             let timeStamp = new Date()
             console.log(timeStamp.getHours() + ':' + timeStamp.getMinutes())
-            console.log(err.data)
+            console.log(err.response.data)
             reject()
         })
     })
