@@ -31,7 +31,7 @@ app.post('/oauth', (req, res) => {
     spotify.auth(secrets, code).then(result => {
         res.send(result)
     }).catch(err => {
-        res.send('Epic failure.')
+        res.send(err.error_description)
     })
 })
 

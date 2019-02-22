@@ -50,7 +50,10 @@ function oAuth(code) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(code)
-    }).then(res => res.json())
+    }).then(res => res.json()).catch(err => {
+        alert(err)
+        sessionStorage.clear()
+    })
 }
 
 function saveAccessTokens(data) {

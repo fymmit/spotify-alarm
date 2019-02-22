@@ -51,7 +51,7 @@ function auth(secrets, code) {
             let timeStamp = new Date()
             console.log(timeStamp.getHours() + ':' + timeStamp.getMinutes())
             console.log(err.response.data)
-            reject()
+            reject(err.response.data)
         })
     })
 }

@@ -1,9 +1,9 @@
 .container {
     margin: auto;
-    width: 500px;
+    max-width: 500px;
     background-image: linear-gradient(#444, #222, #222);
     border: 5px solid #222;
-    padding: 10px;
+    padding: 5px;
 }
 
 h2 {
@@ -18,9 +18,9 @@ h2 {
 }
 
 button {
-    height: 120px;
-    width: 120px;
-    border: 2px solid #bbb;
+    height: 100px;
+    width: 100px;
+    border: 1px solid #bbb;
     border-radius: 50%;
     background: #222;
     color: #bbb;
@@ -37,13 +37,13 @@ button:hover {
 
 input {
     height: 40px;
-    width: 100px;
+    width: 80px;
     border: 0px;
     background: #fff;
     border-radius: 20px;
     font-size: larger;
     text-align: center;
-    margin: 0 40px;
+    margin: 0 20px;
 }
 
 ol {
@@ -54,4 +54,5 @@ ol {
 body {
     background: #111;
     font-family: 'Roboto', sans-serif;
+    margin: 0;
 }
